@@ -60,6 +60,35 @@
 # COMMAND ----------
 
 # MAGIC %sql
+# MAGIC SHOW DATABASES;
+
+# COMMAND ----------
+
+DA.paths.user_db
+
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC 
+# MAGIC DROP DATABASE IF EXISTS cdp_azam;
+# MAGIC CREATE DATABASE IF NOT EXISTS cdp_azam 
+# MAGIC COMMENT "Practice database to store temp tables"
+# MAGIC LOCATION "/dbacademy/adewd/1.01/1_01.db"
+# MAGIC WITH DBPROPERTIES (contains_pii = true)
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC DESCRIBE DATABASE cdp_azam
+
+# COMMAND ----------
+
+# MAGIC %fs ls dbfs:/dbacademy/adewd/1.01/1_01.db
+
+# COMMAND ----------
+
+# MAGIC %sql
 # MAGIC CREATE DATABASE IF NOT EXISTS ${da.db_name}
 # MAGIC COMMENT "This is a test database"
 # MAGIC LOCATION "${da.paths.user_db}"
@@ -98,6 +127,15 @@
 # MAGIC 1. Setting a column comment
 # MAGIC 1. Setting a table comment
 # MAGIC 1. Adding an arbitrary key-value pair as a table property
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC CREATE TABLE cdp_azam.test(
+# MAGIC id int COMMENT "EMP ID",
+# MAGIC NAME STRING COMMENT "EMP NAME")
+# MAGIC COMMENT "CONTAINS PII"
+# MAGIC TBLPROPERTIES ('CONTAINS_PII' = True)
 
 # COMMAND ----------
 
